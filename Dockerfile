@@ -1,5 +1,5 @@
 # استخدام حاوية مايكروسوفت الرسمية المجهزة بكل ملفات المتصفحات
-FROM mcr.microsoft.com/playwright/python:v1.42.0-jammy
+FROM mcr.microsoft.com/playwright/python:v1.59.0-jammy
 
 # تحديد مجلد العمل داخل السيرفر
 WORKDIR /app
