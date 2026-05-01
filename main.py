@@ -58,11 +58,16 @@ async def scrape_movie(tmdb_id: str):
             # الانتظار حتى تستقر الشبكة
             await page.wait_for_load_state("networkidle", timeout=60000)
             
-            # محاكاة ضغطة بشرية في منتصف الشاشة (بناءً على الشاشة الجديدة 1280x720)
-            await page.mouse.click(640, 360)
+            # الهجوم العنيف: هنضغط 3 مرات متتالية بينهم ثانيتين عشان نتخطى أي إعلان منبثق
+            for _ in range(3):
+                await page.mouse.click(640, 360)
+                await asyncio.sleep(2)
             
-            # الانتظار 5 ثواني لضمان خروج طلب الـ m3u8
-            await asyncio.sleep(5)
+            # الانتظار 10 ثواني (بدل 5) لضمان خروج طلب الـ m3u8 من المشغل بعد تخطي الإعلانات
+            await asyncio.sleep(10)
+            
+        except Exception as e:
+            print(f"Scraping Warning/Error: {str(e)}")
             
         except Exception as e:
             print("Scraping Warning/Error:", e)
